@@ -45,8 +45,8 @@ data returned on A16..A23 during `/RD`.
 - **core 1** runs a PIO slot-2 bus servicer: it answers DS reads of the
   SRAM window from a mirrored state struct, and fires MIDI-OUT bytes on
   trigger-reads at `0xE0..0xE3`.
-- **core 0** parses MIDI IN (real-time clock/transport → a clock mirror;
-  channel-voice notes/CC → a 16-entry event ring the DS polls) and drives
+- **core 0** parses MIDI IN (real-time clock/transport - a clock mirror;
+  channel-voice notes/CC - a 16-entry event ring the DS polls) and drives
   the status LED.
 
 ### LED
