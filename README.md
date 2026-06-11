@@ -31,7 +31,7 @@ data returned on A16..A23 during `/RD`.
 | Slot-2 signal | RP2040 GPIO | Dir | Role |
 |---|---|---|---|
 | A0..A7   | GPIO8..15            | in  | address low |
-| A8..A11  | GPIO22, 26, 27, 28   | in  | address high (→ 4 KB window) |
+| A8..A11  | GPIO22, 26, 27, 28   | in  | address high (4 KB window) |
 | A16..A23 | GPIO0..7             | out | data bus (driven during `/RD`) |
 | /CS2     | GPIO16               | in  | SRAM chip select |
 | /RD      | GPIO17               | in  | read strobe |
