@@ -41,7 +41,7 @@ the M2.5 hardware, and a USB cable (data, not charge-only) for flashing.
    resistors, and the 100 nF decoupling + 22 µF VSYS caps; fit the two
    PJ-320E jacks. Exact placement follows the PCB silkscreen / schematic.
 
-Important! Clip the bottom of the pins as flush as possible to the board, so the shell pieces will fit.
+**Important!** Clip the bottom of the pins as flush as possible to the board, so the shell pieces will fit.
    
 3. **Pico:** mount the Pico to the PCB (solder no header). 
 4. **Mechanical:** fit the board into the printed shell using the standoffs
