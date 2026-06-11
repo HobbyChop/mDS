@@ -20,9 +20,6 @@ flashing.
 
 The status indicator is the Pico's onboard green LED (GPIO25): no extra part.
 
-Exact resistor/cap placement follows the mDS PCB silkscreen / schematic
-(a 6N137 MIDI front-end); GPIO mapping is in [02-pinout.md](02-pinout.md).
-
 ### Fasteners and mechanical
 
 | Qty | Part |
@@ -32,15 +29,7 @@ Exact resistor/cap placement follows the mDS PCB silkscreen / schematic
 | 2 | M2.5 x 6 mm standoffs |
 | 1 set | 3D-printed shell pieces |
 
-**Shell:** print from the STL files for the shell pieces in `hardware/`
-(see that folder). Print orientation, infill, and exact fit are defined by
-those models.
-
-> Screw roles depend on the shell STL design and are easy to mix up:
-> typically the 6 mm standoffs space the board off the shell boss, the
-> 8 mm screws pass through the shell into the standoffs, and the 4 mm
-> screws retain the Pico. Match lengths to your print rather than forcing
-> a screw that bottoms out or protrudes.
+**Shell:** print from the STL files for the shell pieces.
 
 ## Tools
 
@@ -53,33 +42,22 @@ the M2.5 hardware, and a USB cable (data, not charge-only) for flashing.
    resistors, and the 100 nF decoupling + 22 µF VSYS caps; fit the two
    PJ-320E jacks. Exact placement follows the PCB silkscreen / schematic;
    GPIO mapping is in [02-pinout.md](02-pinout.md).
-2. **Pico:** mount the Pico to the PCB (solder or header). Keep GPIO23/24/29
-   (Pico module reserves) clear of bus use; only GPIO25 (LED) is used off
-   the bus.
+2. **Pico:** mount the Pico to the PCB (solder no header). 
 3. **Mechanical:** fit the board into the printed shell using the standoffs
    and screws as the shell design dictates (see the note above), then close
    the shell halves.
-4. **Flash + test** before final close-up if you can, so the board is still
-   accessible (next sections).
+4. **Flash + test** 
 
 ## Flash the firmware
 
-Build `stutter_ds_cart.uf2` per [../rp2040/README.md](../rp2040/README.md),
+Build `mDS.uf2` per [../rp2040/README.md](../rp2040/README.md),
 then hold **BOOTSEL**, plug USB, and copy the UF2 onto the `RPI-RP2` drive.
 On a USB serial monitor you should see the banner
 `sDS synth cart fw ... STDS protocol v2` and the green LED begin its slow
 "alive" breathe.
 
-## Validate
-
-Run the bringup checklist before trusting a new board:
-[07-bringup-checklist.md](07-bringup-checklist.md). In short: confirm the
-VSYS rail holds under load, insert into a DS / DS Lite, and use the
-diagnostic ROM to verify `STDS` magic + version 2 and a clean STRESS pass
-across the slot-2 window.
-
 ## License
 
-Build-your-own is welcome for non-commercial use, with attribution and
+Build-your-own is welcome for non-commercial (resell) use, with attribution and
 share-alike, under [CC BY-NC-SA 4.0](../LICENSE). Selling mDS units or
 derivatives is not permitted; the "mDS" / "sDS" names are reserved.
