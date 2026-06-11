@@ -26,8 +26,7 @@ baseline ROM that runs on it.
 ## Slot-2 bus (pin summary)
 
 In the SRAM region the bus is **not** multiplexed: low address on A0..A11,
-data returned on A16..A23 during `/RD`. Full detail + rationale in
-[docs/02-pinout.md](../docs/02-pinout.md) (the firmware is the authority).
+data returned on A16..A23 during `/RD`.
 
 | Slot-2 signal | RP2040 GPIO | Dir | Role |
 |---|---|---|---|
