@@ -69,7 +69,7 @@ cmake --build build -j
 ```
 
 (Or `-G "Unix Makefiles"` on Linux/macOS with `PICO_SDK_PATH` exported.)
-Output: **`build/stutter_ds_cart.uf2`**. Hold **BOOTSEL**, plug USB, copy
+Output: **`build/mDS.uf2`**. Hold **BOOTSEL**, plug USB, copy
 the UF2 onto the `RPI-RP2` drive.
 
 ## License
