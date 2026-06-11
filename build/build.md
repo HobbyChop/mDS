@@ -40,12 +40,10 @@ the M2.5 hardware, and a USB cable (data, not charge-only) for flashing.
 
 1. **Front-end:** solder the 6N137 and its 1N4148, the 220 Ω / 1 kΩ / 10 kΩ
    resistors, and the 100 nF decoupling + 22 µF VSYS caps; fit the two
-   PJ-320E jacks. Exact placement follows the PCB silkscreen / schematic;
-   GPIO mapping is in [02-pinout.md](02-pinout.md).
+   PJ-320E jacks. Exact placement follows the PCB silkscreen / schematic.
 2. **Pico:** mount the Pico to the PCB (solder no header). 
 3. **Mechanical:** fit the board into the printed shell using the standoffs
-   and screws as the shell design dictates (see the note above), then close
-   the shell halves.
+   and screws as the shell design dictates.
 4. **Flash + test** 
 
 ## Flash the firmware
