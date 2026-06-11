@@ -52,7 +52,7 @@ data returned on A16..A23 during `/RD`. Full detail + rationale in
 - Protocol layout + the slot-2 read/write conventions:
   [docs/03-protocol.md](../docs/03-protocol.md).
 
-### LED (GPIO25, green - brightness patterns, not colour)
+### LED
 
 | State | LED |
 |---|---|
