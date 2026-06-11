@@ -79,6 +79,13 @@ the UF2 onto the `RPI-RP2` drive.
 Licensed under **[CC BY-NC-SA 4.0](../LICENSE)** (Attribution-NonCommercial-
 ShareAlike). You may build, modify, and share your own mDS for
 **non-commercial** use, with attribution and under the same license;
-**selling mDS units or derivatives is not permitted**. The "mDS" / "sDS"
-names are reserved by the author (trademark is separate from this
-copyright license). For commercial use, contact the author.
+**selling mDS units or derivatives is not permitted**.
+
+**Intent:** use the mDS however you like, including to make and **sell
+music** (the license does not cover what you create with it). The
+restriction is only on dealing in the device/design itself: no selling
+mDS units or kits, no manufacturing for sale, no selling modified
+firmware/hardware.
+
+The "mDS" / "sDS" names are reserved by the author (trademark is separate
+from this copyright license). For commercial use, contact the author.
