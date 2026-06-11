@@ -53,7 +53,7 @@ the M2.5 hardware, and a USB cable (data, not charge-only) for flashing.
 
 ## Flash the firmware
 
-Build `mDS.uf2` per [../rp2040/README.md](../rp2040/README.md),
+Build `mDS.uf2`
 then hold **BOOTSEL**, plug USB, and copy the UF2 onto the `RPI-RP2` drive.
 On a USB serial monitor you should see the banner
 `sDS synth cart fw ... STDS protocol v2` and the green LED begin its slow
