@@ -24,7 +24,7 @@ The status indicator is the Pico's onboard green LED (GPIO25): no extra part.
 | Qty | Part |
 |----:|------|
 | 2 | M2.5 x 8 mm screws |
-| 2 | M2.5 x 5 mm screws |
+| 2 | M2.5 x 4 mm screws |
 | 2 | M2.5 x 6 mm standoffs |
 | 1 set | 3D-printed shell pieces |
 
