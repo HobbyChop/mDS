@@ -74,9 +74,6 @@ cmake --build build -j
 Output: **`build/stutter_ds_cart.uf2`**. Hold **BOOTSEL**, plug USB, copy
 the UF2 onto the `RPI-RP2` drive.
 
-Bringup / validation checklist for new boards:
-[docs/07-bringup-checklist.md](../docs/07-bringup-checklist.md).
-
 ## License
 
 Licensed under **[CC BY-NC-SA 4.0](../LICENSE)** (Attribution-NonCommercial-
