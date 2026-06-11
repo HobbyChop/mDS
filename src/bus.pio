@@ -1,0 +1,131 @@
+; STUTTER-DS slot-2 bus servicer -- PIO state machine.
+;
+; Replaces the CPU-polled bus loop. Polling can't catch the GBA
+; slot-2 SRAM region's address window: AD0..15 are valid for only
+; tens of ns around the /CS2 falling edge before the DS releases
+; its drivers (real Nintendo carts latched the address externally
+; via a 74HC373). With polling at ~80 ns per iteration we always
+; miss it and read 0x0000 from our own internal pull-down.
+;
+; This PIO program does the same logic but with sub-clock-cycle
+; precision -- the `wait 0 gpio 16` instruction blocks on the /CS2
+; falling edge in hardware and the very next instruction samples
+; AD0..15. At 125 MHz that's 8 ns between edge detection and
+; sample, comfortably inside even the narrowest cart address
+; window.
+;
+; Protocol per slot-2 SRAM cycle:
+;   1. DS asserts address on A0..A7 (GP8..GP15) and A8..A11 on dedicated pins,
+;      then drops /CS2.
+;   2. We capture the low address byte on /CS2 fall and push it to the CPU.
+;   3. CPU combines the low byte with the A8..A11 pins, looks up the byte in
+;      sync_state, and pushes it back to the PIO.
+;   4. DS drops /RD. We drive the low 8 data pins GP0..GP7 with the byte.
+;   5. DS reads the data, raises /RD, raises /CS2.
+;   6. We release GP0..GP7 back to high-Z so the next cycle can latch a fresh address.
+;
+; CPU side (core 1, in bus_pio.c) does:
+;   while (1) {
+;       u32 addr_lo = pio_sm_get_blocking(pio, sm);
+;       u32 addr_hi = read_addr_high_nibble();
+;       u32 addr = addr_lo | (addr_hi << 8);
+;       u8  byte = sync_state[addr];
+;       pio_sm_put_blocking(pio, sm, byte);
+;   }
+;
+; FIFO depth on RP2040 is 4 each way, so even a momentary CPU
+; stall up to 4 cycles deep is absorbed without dropping an address.
+;
+; Pin layout (must match bus_pio_init in bus_pio.c):
+;   in_base  = 8   (A0..A7 sampled from GP8..GP15)
+;   in_count = 8   (A0..A7)
+;   out_base = 0   (D0..D7 driven on GP0..GP7)
+;   out_count= 16  (PIO still uses 16 pins for the OUT instruction,
+;                   but only the low 8 are driven during /RD; the high
+;                   half is kept high-Z by the pindir mask.)
+
+.program slot2_bus
+
+; DIAGNOSTIC MODE - constant drive, no CPU in the critical path.
+;
+; Suspecting that CPU latency (the trip /CS2-fall -> push to RX FIFO
+; -> CPU lookup -> push to TX FIFO -> PIO pull) is letting /RD rise
+; before the cart has driven valid data. This version eliminates the
+; CPU from the data path entirely: CPU loops pushing the same byte
+; (e.g. 'S') into TX FIFO repeatedly; PIO just pulls a pre-loaded
+; response and drives it immediately on /CS2 fall.
+;
+; Drive starts at /CS2 fall (not /RD fall) so the bus is settled
+; well before any /RD sample. This contends with the DS's address
+; drive on AD0..AD7 for a short window between /CS2 fall and /RD
+; fall, but the test will tell us whether the DS's bus controller
+; is forgiving of that.
+;
+; If DS sees 'S' and proceeds past magic[0]:
+;   - CPU latency WAS the bug. Fix: arrange for response to be ready
+;     before /RD fall (pre-compute, or do address-independent
+;     responses).
+; If DS still bails:
+;   - Bus contention on AD0..7 with DS-driven address bits, OR
+;   - signal integrity, OR
+;   - mechanical contact issue.
+
+.wrap_target
+    wait 0 gpio 16        ; block until /CS2 falls (cycle begins)
+
+    wait 0 gpio 17        ; ALSO wait for /RD fall before sampling the
+                          ; address. The DS releases AD0..AD15 only
+                          ; "tens of ns" after /CS2 falls (per the cart-
+                          ; cycle protocol -- real carts latch on /CS2
+                          ; fall via a 74HC373 because of this short
+                          ; window). Sampling immediately post-/CS2-
+                          ; fall catches mid-transition bits when the
+                          ; address has changed since the last cycle,
+                          ; which produced ~50% byte-offset corruption
+                          ; on multi-byte reads. /RD fall happens later
+                          ; in the cycle, AFTER the DS has held the
+                          ; address stable through the setup window
+                          ; AND through propagation across the bodge
+                          ; wires + slot-2 connector capacitance. At
+                          ; /RD fall the address is guaranteed valid
+                          ; (the DS's whole SRAM protocol depends on
+                          ; it being valid at this point so the cart
+                          ; knows which byte to drive). Cost: we lose
+                          ; the early sample for CPU dispatch, but the
+                          ; CPU still has the full /RD-low window
+                          ; (~540 ns at SRAM_WAIT_18) to look up + push
+                          ; the response -- plenty.
+
+    in   pins, 8          ; sample AD0..AD7 (= GP8..GP15). Lower 4 bits
+                          ; (AD0..AD3 on GP8..GP11) are always wired and
+                          ; cover the original 16-byte protocol-v1
+                          ; window. Upper 4 bits (AD4..AD7 on GP12..GP15)
+                          ; are optional bodge wires that extend the
+                          ; addressable window to 256 bytes (= 8-bit
+                          ; address), required by protocol-v2 fields
+                          ; like the MIDI event ring at offset 0x18+.
+                          ; When those pins aren't wired, the internal
+                          ; pull-downs hold them at 0 and DS reads
+                          ; above 0x0F harmlessly alias back to the
+                          ; first 16 bytes (= same behavior as v1).
+    push                  ; push the offset to RX FIFO; CPU dispatches
+                          ; on it and pushes the matching sync_state
+                          ; byte to TX FIFO
+
+    pull                  ; wait for CPU's per-address response
+
+    out  pins,    16      ; drive data on GP0..GP7 (= A16..A23 = D0..D7);
+                          ; we're already in the /RD-low window so the
+                          ; data lands before the DS's sample point at
+                          ; /RD rise
+    out  pindirs, 16      ; pindir mask = 0x00FF -> only GP0..GP7 driven;
+                          ; GP8..GP11 stay as inputs (address pins for the
+                          ; next cycle) and GP12..GP15 are unused
+
+    wait 1 gpio 17        ; release at /RD rise (DS samples on this edge)
+    mov  osr, null
+    out  pindirs, 16      ; high-Z so the next cycle's address phase has
+                          ; nothing fighting the DS on the data lines
+
+    wait 1 gpio 16        ; block until /CS2 rises (cycle end)
+.wrap
