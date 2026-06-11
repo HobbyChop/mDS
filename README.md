@@ -48,8 +48,6 @@ data returned on A16..A23 during `/RD`.
 - **core 0** parses MIDI IN (real-time clock/transport → a clock mirror;
   channel-voice notes/CC → a 16-entry event ring the DS polls) and drives
   the status LED.
-- Protocol layout + the slot-2 read/write conventions:
-  [docs/03-protocol.md](../docs/03-protocol.md).
 
 ### LED
 
