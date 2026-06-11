@@ -15,7 +15,6 @@ flashing.
 | 1 | 1 kΩ resistor | 6N137 output pull-up. |
 | 1 | 10 kΩ resistor | pull-up (6N137 enable / line bias). |
 | 2 | 100 nF ceramic capacitor | decoupling (6N137 Vcc + rail). |
-| 1 | 22 µF capacitor (low-ESR) | VSYS reservoir; fixes brown-out under bus traffic. |
 | 2 | PJ-320E 3.5 mm jack | MIDI IN + MIDI OUT (TRS-MIDI). |
 
 The status indicator is the Pico's onboard green LED (GPIO25): no extra part.
