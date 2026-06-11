@@ -46,7 +46,7 @@ the M2.5 hardware, and a USB cable (data, not charge-only) for flashing.
 3. **Pico:** mount the Pico to the PCB (solder no header). 
 4. **Mechanical:** fit the board into the printed shell using the standoffs
    and screws as the shell design dictates.
-5. **Flash + test** 
+5. **Flash + test** **Important!** Do NOT plug in a usb cable while the cartridge is inserted into your DS. USB is for flashing firmware only!
 
 ## Flash the firmware
 
