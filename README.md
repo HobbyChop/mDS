@@ -1,8 +1,8 @@
 <table>
   <tr>
-    <td align="center"><img src="pics/mDS01.jpeg" width="300"><br>PCB</td>
-    <td align="center"><img src="pics/mDS02.jpeg" width="300"><br>Printed shell</td>
-    <td align="center"><img src="pics/mDS03.jpeg" width="300"><br>Assembled</td>
+    <td align="center"><img src="pics/mDS01.jpeg" width="300"><br></td>
+    <td align="center"><img src="pics/mDS02.jpeg" width="300"><br></td>
+    <td align="center"><img src="pics/mDS03.jpeg" width="300"><br></td>
   </tr>
 </table>
 
