@@ -12,9 +12,9 @@ flashing.
 | 1 | H11L1 optocoupler | MIDI IN isolation (high-speed, logic output). |
 | 1 | 1N4148 diode | MIDI IN reverse protection (opto input LED). |
 | 2 | 220 Ω resistor | MIDI line resistors (OUT drive + IN loop). |
-| 1 | 1 kΩ resistor | 6N137 output pull-up. |
+| 1 | 1 kΩ resistor | H11L1 output pull-up. |
 | 1 | 10 kΩ resistor | pull-up (6N137 enable / line bias). |
-| 2 | 100 nF ceramic capacitor | decoupling (6N137 Vcc + rail). |
+| 2 | 100 nF ceramic capacitor | decoupling (H11L1 Vcc + rail). |
 | 2 | PJ-320E 3.5 mm jack | MIDI IN + MIDI OUT (TRS-MIDI). |
 
 The status indicator is the Pico's onboard green LED (GPIO25): no extra part.
