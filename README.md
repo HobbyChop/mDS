@@ -12,7 +12,7 @@
 **mDS** is a Nintendo DS / DS Lite **slot-2 (GBA Game Pak) MIDI interface**
 built on an RP2040. It bridges hardware MIDI into the DS over the slot-2
 SRAM bus so a DS app can be a MIDI synth. The DS is the synth; the cart is
-the interface - see the [sDS synth app](../docs/08-synth-app.md), the
+the interface - see the [sDS synth app](https://github.com/HobbyChop/sDS), the
 baseline ROM that runs on it.
 
 > One firmware, two jobs: mDS speaks the mDS `"STDS"` protocol at **version
