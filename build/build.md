@@ -8,7 +8,7 @@ flashing.
 | Qty | Part | Notes |
 |----:|------|-------|
 | 1 | Raspberry Pi Pico (RP2040) | Not RP2040-Zero. |
-| 1 | mDS PCB | Slot-2 edge fingers + footprints. See `hardware/`. |
+| 1 | mDS PCB |
 | 1 | H11L1 optocoupler | MIDI IN isolation (high-speed, logic output). |
 | 1 | 1N4148 diode | MIDI IN reverse protection (opto input LED). |
 | 2 | 220 Ω resistor | MIDI line resistors (OUT drive + IN loop). |
