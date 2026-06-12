@@ -1,3 +1,12 @@
+<table>
+  <tr>
+    <td align="center"><img src="pics/mDS01.jpeg" width="300"><br>PCB</td>
+    <td align="center"><img src="pics/mDS02.jpeg" width="300"><br>Printed shell</td>
+    <td align="center"><img src="pics/mDS03.jpeg" width="300"><br>Assembled</td>
+  </tr>
+</table>
+
+
 # mDS - DS slot-2 MIDI cartridge
 
 **mDS** is a Nintendo DS / DS Lite **slot-2 (GBA Game Pak) MIDI interface**
