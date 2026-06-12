@@ -8,7 +8,7 @@ flashing.
 | Qty | Part | Notes |
 |----:|------|-------|
 | 1 | Raspberry Pi Pico (RP2040) | Not RP2040-Zero. |
-| 1 | mDS PCB | 1mm thickess, ENIG
+| 1 | mDS PCB | Important! 1mm thickess, ENIG
 | 1 | H11L1 optocoupler | MIDI IN isolation  |
 | 1 | 1N4148 diode | MIDI IN reverse protection  |
 | 2 | 220 Ω resistor | MIDI line resistors  |
