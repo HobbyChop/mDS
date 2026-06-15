@@ -1,7 +1,7 @@
 <table>
   <tr>
     <td align="center"><img src="pics/mDS01.jpeg" width="300"><br></td>
-    <td align="center"><img src="pics/mDS02.jpeg" width="300"><br></td>
+    <td align="center"><img src="pics/mDS-PCB.png" width="300"><br></td>
     <td align="center"><img src="pics/mDS03.jpeg" width="300"><br></td>
   </tr>
 </table>
