@@ -77,7 +77,7 @@ cart, hacking the firmware, or building the hardware.
 
 The DS reads the cart's mirrored state from the slot-2 **SRAM region**
 (`0x0A000000`). Slot-2 `/WR` is unreliable across DS units, so the link is
-effectively **read-only**: DS→cart commands are *read side effects* (see MIDI
+effectively **read-only**: DS > cart commands are *read side effects* (see MIDI
 OUT below). DS-side access rules:
 
 - Call `gbacartOpen()` (claims the slot + sets the ARM9 MPU so the region
