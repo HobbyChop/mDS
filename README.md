@@ -25,8 +25,8 @@ baseline ROM that runs on it.
 |---|---|
 | **MCU** | RP2040 - dual Cortex-M0+ @ 133 MHz, 264 KB SRAM (Raspberry Pi Pico module, 2 MB flash) |
 | **Host interface** | GBA slot-2 SRAM region `0x0A000000`, 4 KB window (12-bit address), serviced by a PIO state machine |
-| **MIDI IN** | 31250 baud UART, opto-isolated (6N138 / H11L1) |
-| **MIDI OUT** | 31250 baud UART, 2×220 Ω → TRS/DIN-5 |
+| **MIDI IN** | 31250 baud UART, opto-isolated (H11L1) |
+| **MIDI OUT** | 31250 baud UART, 2×220 Ω, TRS/DIN-5 |
 | **Indicator** | onboard green LED (GPIO25): status + MIDI activity via PWM |
 | **Power** | slot-2 3.3 V rail, no level shifting; 22 µF reservoir cap on VSYS |
 | **Programming** | USB BOOTSEL (drag-and-drop UF2); SWD pads optional |
