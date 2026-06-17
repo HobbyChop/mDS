@@ -71,8 +71,7 @@ data returned on A16..A23 during `/RD`.
 ## Development specification
 
 The contract for building against the mDS: writing a DS ROM that talks to the
-cart, hacking the firmware, or building the hardware. Deeper detail lives in
-[`docs/`](../docs); this is the working summary.
+cart, hacking the firmware, or building the hardware.
 
 ### Host link (slot-2): a read-only channel
 
