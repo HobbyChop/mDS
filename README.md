@@ -45,7 +45,7 @@ data returned on A16..A23 during `/RD`.
 | /CS2     | GPIO16               | in  | SRAM chip select |
 | /RD      | GPIO17               | in  | read strobe |
 | /WR      | GPIO18               | in  | write strobe (unused) |
-| /IRQ     | GPIO19               | out | optional cart→DS line |
+| /IRQ     | GPIO19               | out | optional cart to DS line |
 | MIDI TX  | GPIO20               | out | DIN/TRS OUT |
 | MIDI RX  | GPIO21               | in  | opto IN |
 
@@ -113,7 +113,7 @@ OUT below). DS-side access rules:
 Fields are single-writer (cart core 0) / single-reader (DS), word-atomic; no
 multi-field consistency is promised, read one field per poll.
 
-### MIDI IN - the event ring (cart → DS)
+### MIDI IN - the event ring (cart to DS)
 
 Channel-voice messages land in a 16-entry ring; each entry is 4 bytes:
 
@@ -132,7 +132,7 @@ dispatch up to it, bounded by the ring length so a corrupt head can't spin
 forever. Real-time clock/transport bytes update the clock mirror (`flags`,
 `tick_counter`, `bpm_q8`, `song_pos_16ths`), not the ring.
 
-### MIDI OUT - trigger-reads (DS → cart → UART)
+### MIDI OUT - trigger-reads (DS to cart to UART)
 
 The DS "sends" by reading magic addresses; the cart emits on its UART TX as a
 side effect. The read still returns the (zero) SRAM byte, so use a normal
@@ -163,7 +163,7 @@ wire), so the cart feeds MIDI OUT at full rate. DS helpers:
   flash cache miss can't stretch a serve; the GPIO input synchroniser adds a
   fixed ~2-cycle (~16 ns) start-of-window tax.
 - **Core split:** core 1 = the bus servicer (tight loop, no allocation); core 0
-  = MIDI RX parse → mirror updates, status LED, USB-CDC debug. Concurrency is
+  = MIDI RX parse > mirror updates, status LED, USB-CDC debug. Concurrency is
   single-writer/single-reader on `volatile` storage, no locks.
 
 ### Bandwidth & limits
