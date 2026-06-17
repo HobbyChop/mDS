@@ -183,12 +183,7 @@ wire), so the cart feeds MIDI OUT at full rate. DS helpers:
    private cursor up to it.
 4. To send MIDI out, use the trigger-read helpers; keep the two nibble reads
    adjacent and never read `0xC0..0xE3` unintentionally (side effects).
-5. Reference driver: the sDS app's [`synth_cart.c`](https://github.com/HobbyChop/sDS).
-
-See [`docs/02-pinout.md`](../docs/02-pinout.md),
-[`docs/03-protocol.md`](../docs/03-protocol.md),
-[`docs/04-ds-hardware-tips.md`](../docs/04-ds-hardware-tips.md), and
-[`docs/07-bringup-checklist.md`](../docs/07-bringup-checklist.md) for depth.
+5. Reference driver: the sDS app.
 
 ## Build & flash
 
