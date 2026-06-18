@@ -71,8 +71,7 @@ data returned on A16..A23 during `/RD`.
 ## Development specification
 
 This is the most technical part of the README: how the cart works under the
-hood, and how to talk to it from your own DS program. The ideas are explained in
-plain terms; the exact numbers a programmer needs stay in the tables.
+hood, and how to talk to it from your own DS program. 
 
 ### How the DS and the cart talk
 
