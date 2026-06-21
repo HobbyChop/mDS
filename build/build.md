@@ -39,6 +39,7 @@ the M2.5 hardware, and a USB cable (data, not charge-only) for flashing.
 1. **Front-end:** solder the H11L1 and its 1N4148, the 220 Ω / 1 kΩ / 10 kΩ
    resistors, and the 100 nF decoupling; fit the two
    PJ-320E jacks. Exact placement follows the PCB silkscreen / schematic.
+
   
 **Important!** Don't socket the H11L1 or it will be too tall for the shell.
 **Important!** Clip the bottom of the pins as flush as possible to the board, so the shell pieces will fit.
