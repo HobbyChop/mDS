@@ -42,6 +42,7 @@ the M2.5 hardware, and a USB cable (data, not charge-only) for flashing.
 
   
 **Important!** Don't socket the H11L1 or it will be too tall for the shell.
+
 **Important!** Clip the bottom of the pins as flush as possible to the board, so the shell pieces will fit.
    
 3. **Pico:** mount the Pico to the PCB (solder no header). 
