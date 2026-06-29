@@ -1,4 +1,4 @@
-# mDS cart — DS-side MIDI examples
+# mDS cart -- DS-side MIDI examples
 
 Minimal, copy-pasteable C for talking to the **mDS** slot-2 MIDI cart from a
 Nintendo DS homebrew (devkitARM + libnds/calico). It covers **sending** and
@@ -87,7 +87,7 @@ bool mds_open(void) {
 bool mds_present(void) { return s_active != 0; }
 ```
 
-> Tip: don't touch slot-2 before `mds_open()` — a raw read on some flashcarts
+> Tip: don't touch slot-2 before `mds_open()` -- a raw read on some flashcarts
 > before the cart is claimed can wedge them. Probe a couple of frames into boot.
 
 ---
@@ -192,7 +192,7 @@ void example_follow_clock(void) {
 ### Being the master (send clock out)
 
 MIDI clock is 24 pulses per quarter note. **For tight timing, drive this from a
-hardware-timer IRQ** (≈1–2 kHz) rather than the 60 Hz VBlank loop — emitting one
+hardware-timer IRQ** (≈1–2 kHz) rather than the 60 Hz VBlank loop -- emitting one
 F8 per frame bunches pulses on frame boundaries (up to ~16 ms jitter).
 
 ```c
@@ -238,7 +238,7 @@ int main(void) {
 
 ### Notes
 - Channels are 0-based on the wire (`ch & 0x0F`); MIDI "channel 1" = `0`.
-- `mds_recv()` consumes the ring — if you only want clock/BPM for a readout and
+- `mds_recv()` consumes the ring -- if you only want clock/BPM for a readout and
   aren't reading notes, keep the read cursor synced instead (`s_read_head =
   mds_rd8(MDS_WRITE_HEAD) % MDS_RING_LEN;` each frame) so the ring never appears
   full to the cart.
